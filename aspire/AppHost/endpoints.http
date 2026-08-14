@@ -1,0 +1,14 @@
+@WeatherService_HostAddress = https://localhost:7570
+
+GET {{WeatherService_HostAddress}}/api/weather/
+Accept: application/json
+
+###
+
+GET {{WeatherService_HostAddress}}/api/widgets/
+Accept: application/json
+
+###
+
+POST {{WeatherService_HostAddress}}/api/widgets/
+Content-Type: application/json
