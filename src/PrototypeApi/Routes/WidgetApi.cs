@@ -1,3 +1,6 @@
+using System.Text.Json;
+using Azure.Messaging.ServiceBus;
+
 namespace PrototypeApi.Routes;
 
 public static class WidgetApi
@@ -11,9 +14,17 @@ public static class WidgetApi
             return Results.Ok("/widgets GET is working!");
         });
         
-        group.MapPost("/widgets", () =>
+        group.MapPost("/widgets", async (ServiceBusClient client, CancellationToken cancellationToken) =>
         {
-            return Results.Ok("/widgets POST is working!");
+            var sender = client.CreateSender("widget-queue");
+            
+            var message = new ServiceBusMessage(
+                JsonSerializer.Serialize(new { Id = Guid.NewGuid(), Name = $"widget-{Guid.NewGuid()}" })
+            );
+
+            await sender.SendMessageAsync(message, cancellationToken);
+
+            return Results.Accepted();
         });
 
         return group;
