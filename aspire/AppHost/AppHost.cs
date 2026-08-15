@@ -1,7 +1,7 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
 var serviceBus = builder.AddAzureServiceBus("messaging")
-    .RunAsEmulator();
+    .RunAsEmulator(c => c.WithLifetime(ContainerLifetime.Persistent));
 
 serviceBus.AddServiceBusQueue("widget-queue");
 var topic = serviceBus.AddServiceBusTopic("widget-topic");
