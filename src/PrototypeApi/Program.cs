@@ -1,5 +1,6 @@
 using PrototypeApi.Extensions;
 using MojoPrototype.ServiceDefaults;
+using PrototypeApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,8 @@ builder.Services.AddProblemDetails();
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+builder.Services.AddHostedService<Receiver>();
 
 var app = builder.Build();
 
