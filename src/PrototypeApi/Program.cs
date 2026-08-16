@@ -3,6 +3,8 @@ using MojoPrototype.ServiceDefaults;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddAzureServiceBusClient("messaging");
+
 // Add service defaults & Aspire client integrations.
 builder.AddServiceDefaults();
 
