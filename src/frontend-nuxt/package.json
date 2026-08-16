@@ -1,5 +1,5 @@
 {
-  "name": "frontend-one",
+  "name": "frontend-nuxt",
   "type": "module",
   "private": true,
   "scripts": {
@@ -8,7 +8,8 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@nuxt/ui": "^4.10.0",

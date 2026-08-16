@@ -1,2 +1,2 @@
-import shared from '../eslint.shared.mjs'
-export default [...shared]
+import shared from '../eslint.shared.mjs';
+export default [...shared];

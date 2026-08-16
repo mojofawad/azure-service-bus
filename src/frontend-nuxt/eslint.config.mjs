@@ -1,4 +1,4 @@
-// eslint.config.mjs
-import shared from '../eslint.shared.mjs'
-import nuxtConfig from '@nuxt/eslint-config/flat'
-export default [...shared, ...nuxtConfig]
+import shared from '../eslint.shared.mjs';
+import { createConfigForNuxt } from '@nuxt/eslint-config/flat';
+
+export default createConfigForNuxt().prepend(...shared);

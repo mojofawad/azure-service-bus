@@ -1,31 +1,30 @@
-// import js from '@eslint/js';
-// import { defineConfig, globalIgnores } from 'eslint/config';
-// import globals from 'globals';
-// import reactHooks from 'eslint-plugin-react-hooks';
-// import reactRefresh from 'eslint-plugin-react-refresh';
-// import tseslint from 'typescript-eslint';
-//
-// export default defineConfig(
-//   globalIgnores(['dist']),
-//   {
-//     extends: [js.configs.recommended, tseslint.configs.recommended],
-//     files: ['**/*.{ts,tsx}'],
-//     languageOptions: {
-//       globals: globals.browser,
-//     },
-//     plugins: {
-//       'react-hooks': reactHooks,
-//       'react-refresh': reactRefresh,
-//     },
-//     rules: {
-//       ...reactHooks.configs.recommended.rules,
-//       'react-refresh/only-export-components': [
-//         'warn',
-//         { allowConstantExport: true },
-//       ],
-//     },
-//   },
-// );
-import shared from '../eslint.shared.mjs'
-import nuxtConfig from '@nuxt/eslint-config/flat'
-export default [...shared, ...nuxtConfig]
+import js from '@eslint/js';
+import { defineConfig, globalIgnores } from 'eslint/config';
+import globals from 'globals';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
+import tseslint from 'typescript-eslint';
+import shared from '../eslint.shared.mjs';
+
+export default defineConfig(
+  globalIgnores(['dist']),
+  {
+    extends: [js.configs.recommended, tseslint.configs.recommended],
+    files: ['**/*.{ts,tsx}'],
+    languageOptions: {
+      globals: globals.browser,
+    },
+    plugins: {
+      'react-hooks': reactHooks,
+      'react-refresh': reactRefresh,
+    },
+    rules: {
+      ...reactHooks.configs.recommended.rules,
+      'react-refresh/only-export-components': [
+        'warn',
+        { allowConstantExport: true },
+      ],
+    },
+  },
+  ...shared,
+);
