@@ -18,6 +18,10 @@ var webfrontend = builder.AddViteApp("webfrontend", "../../src/frontend")
     .WithReference(api)
     .WaitFor(api);
 
+var nuxtfrontend = builder.AddViteApp("nuxtfrontend", "../../src/frontend-one")
+    .WithReference(api)
+    .WaitFor(api);
+
 api.PublishWithContainerFiles(webfrontend, "wwwroot");
 
 builder.Build().Run();
