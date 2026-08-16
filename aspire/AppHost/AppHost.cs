@@ -14,15 +14,18 @@ var api = builder.AddProject<Projects.PrototypeApi>("server")
     .WithExternalHttpEndpoints()
     .WithReference(serviceBus);
 
-var webfrontend = builder.AddViteApp("webfrontend", "../../src/frontend")
+var webfrontend = builder.AddViteApp("webfrontend", "../../src/frontend-react")
+    .WithPnpm()
     .WithReference(api)
     .WaitFor(api);
 
-var nuxtfrontend = builder.AddViteApp("nuxtfrontend", "../../src/frontend-one")
+var nuxtfrontend = builder.AddViteApp("nuxtfrontend", "../../src/frontend-nuxt")
+    .WithPnpm()
     .WithReference(api)
     .WaitFor(api);
 
-var nextfrontend = builder.AddViteApp("nextfrontend", "../../src/frontend-two")
+var nextfrontend = builder.AddViteApp("nextfrontend", "../../src/frontend-next")
+    .WithPnpm()
     .WithReference(api)
     .WaitFor(api);
 
