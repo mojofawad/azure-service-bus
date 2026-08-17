@@ -14,19 +14,24 @@ var api = builder.AddProject<Projects.PrototypeApi>("server")
     .WithExternalHttpEndpoints()
     .WithReference(serviceBus);
 
+var apiEndpoint = api.GetEndpoint("http");
+
 var webfrontend = builder.AddViteApp("webfrontend", "../../src/frontend-react")
     .WithPnpm()
-    .WithReference(api)
+    .WithEnvironment("API_URL", apiEndpoint)
+    .WithExternalHttpEndpoints()
     .WaitFor(api);
 
 var nuxtfrontend = builder.AddViteApp("nuxtfrontend", "../../src/frontend-nuxt")
     .WithPnpm()
-    .WithReference(api)
+    .WithEnvironment("API_URL", apiEndpoint)
+    .WithEnvironment("NUXT_API_URL", apiEndpoint)
+    .WithExternalHttpEndpoints()
     .WaitFor(api);
 
 var nextfrontend = builder.AddViteApp("nextfrontend", "../../src/frontend-next")
     .WithPnpm()
-    .WithReference(api)
+    .WithEnvironment("API_URL", apiEndpoint)
     .WaitFor(api);
 
 api.PublishWithContainerFiles(webfrontend, "wwwroot");

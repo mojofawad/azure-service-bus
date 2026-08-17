@@ -1,13 +1,7 @@
+import type { WeatherForecast } from '@mojoprototype/frontend-core/src';
 import { useState, useEffect } from 'react';
 import aspireLogo from '/Aspire.png';
 import './App.css';
-
-interface WeatherForecast {
-  date: string;
-  temperatureC: number;
-  temperatureF: number;
-  summary: string;
-}
 
 function App() {
   const [weatherData, setWeatherData] = useState<WeatherForecast[]>([]);
