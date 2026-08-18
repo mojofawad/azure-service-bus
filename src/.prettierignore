@@ -1,0 +1,6 @@
+.next
+.nuxt
+dist
+.output
+Console/**
+PrototypeApi/**
